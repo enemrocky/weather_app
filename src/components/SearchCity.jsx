@@ -44,6 +44,7 @@ const SearchCity = () => {
 				setIcon(data.list[0].weather[0].icon);
 				setWeatherData(data.list);
 			});
+		console.log(dateTime);
 	}, [cityName]);
 
 	return (
@@ -62,8 +63,8 @@ const SearchCity = () => {
 
 			{/* result component */}
 			<div className="flex gap-3 p-6 text-xl">
-				<div className="flex  bg-white m-auto mt-16 w-1/5 text-sm gap-4 shadow-[#139ca1] shadow-xl">
-					<div className="side">
+				<div className="flex justify-between bg-white m-auto mt-16 w-1/5 text-sm gap-4 shadow-[#139ca1] shadow-xl">
+					<div className="flex flex-col *:mx-auto w-1/5 ">
 						<div>{dateTime}</div>
 						<div>
 							<WiHumidity className="text-4xl h-8" />
@@ -78,7 +79,7 @@ const SearchCity = () => {
 							{windSpeed}
 						</div>
 					</div>
-					<div className="flex flex-col gap-3 *:m-auto bg-white p-6 text-xl">
+					<div className="flex flex-col gap-3 *:ms-4 bg-white p-6 text-xl w-4/5">
 						<div className="uppercase font-medium">{cityName}</div>
 						<img
 							src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
@@ -109,23 +110,3 @@ export default SearchCity;
 // setcloudsDescription(item.weather[0].description);
 // 	console.log(item);
 // });
-
-// {
-/* <div className="bg-white">
-					<div className="flex text-lg align-middle justify-around">
-						<div>
-							<WiHumidity className="text-4xl h-8" />
-							{humidity}
-						</div>
-						<div>
-							<BiTachometer className="text-3xl" />
-							{pressure}
-						</div>
-						<div>
-							<FaWind className="text-2xl pt-1" />
-							{windSpeed}
-						</div>
-					</div>
-					<div>{dateTime}</div>
-				</div> */
-// }

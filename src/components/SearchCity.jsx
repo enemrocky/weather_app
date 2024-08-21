@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import MainResult from "./MainResult";
-import AutoLoadCities from "./AutoLoadCities";
 
 const SearchCity = () => {
 	const [enteredCity, setEnteredCity] = useState("");
@@ -64,7 +63,7 @@ const SearchCity = () => {
 					Search
 				</button>
 			</form>
-			<AutoLoadCities />
+
 			{weatherData && (
 				<MainResult
 					cityName={cityName}

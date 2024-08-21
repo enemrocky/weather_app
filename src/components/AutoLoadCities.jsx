@@ -1,54 +1,54 @@
 import { useEffect, useState } from "react";
 
 const AutoLoadCities = () => {
-	// const [enteredCity, setEnteredCity] = useState("");
-	// const [cityName, setCityName] = useState("");
-	// const [currentTemp, setCurrentTemp] = useState("");
-	// const [minTemp, setMinTemp] = useState("");
-	// const [maxTemp, setMaxTemp] = useState("");
-	// const [humidity, setHumidity] = useState("");
-	// const [pressure, setPressure] = useState("");
-	// const [dateTime, setDateTime] = useState("");
-	// const [cloudsDescription, setcloudsDescription] = useState("");
-	// const [windSpeed, setWindSpeed] = useState("");
-	// const [icon, setIcon] = useState("");
-	const [data, setData] = useState("");
-
-	// const enteredCityHandler = (e) => {
-	// 	setEnteredCity(e.target.value);
-	// };
-
-	// const cityNameHandler = (e) => {
-	// 	e.preventDefault();
-	// 	setCityName(enteredCity);
-	// 	setEnteredCity("");
-	// };
+	const [cityName, setCityName] = useState("");
+	const [currentTemp, setCurrentTemp] = useState("");
+	const [minTemp, setMinTemp] = useState("");
+	const [maxTemp, setMaxTemp] = useState("");
+	const [cloudsDescription, setcloudsDescription] = useState("");
+	const [icon, setIcon] = useState("");
+	const [time, setTime] = useState("");
 
 	useEffect(() => {
 		fetch(
-			`https://api.openweathermap.org/data/2.5/forecast?q=Sydney&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric`
+			"https://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric"
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				// const dateObj = new Date(data.list[0].dt_txt);
-				// setDateTime(
-				// 	dateObj.toLocaleTimeString([], {
-				// 		hour: "2-digit",
-				// 		minute: "2-digit",
-				// 	})
-				// );
-				// setCurrentTemp(data.list[0].main.feels_like.toFixed(1));
-				// setMinTemp(data.list[0].main.temp_min.toFixed(1));
-				// setMaxTemp(data.list[0].main.temp_max.toFixed(1));
-				// setPressure(data.list[0].main.pressure);
-				// setHumidity(data.list[0].main.humidity);
-				// setWindSpeed(data.list[0].wind.speed);
-				// setcloudsDescription(data.list[0].weather[0].description);
-				// setIcon(data.list[0].weather[0].icon);
-				setData(data.list);
+				// Convert the timestamp to milliseconds
+				let date = new Date(data.dt * 1000);
+				setTime(
+					date.toLocaleTimeString([], {
+						hour: "2-digit",
+						minute: "2-digit",
+					})
+				);
+				setCurrentTemp(data.main.temp.toFixed(1));
+				setMinTemp(data.main.temp_min.toFixed(1));
+				setMaxTemp(data.main.temp_max.toFixed(1));
+				setCityName(data.name);
+				setcloudsDescription(data.weather[0].description);
+				setIcon(data.weather[0].icon);
 			});
-		console.log(data);
 	}, []);
+
+	return (
+		<div className="flex flex-col gap-3 w-2/3 items-center text-center">
+			<div className="uppercase font-medium text-2xl">{cityName}</div>
+			<div className="font-medium text-base">{time}</div>
+
+			<img
+				src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+				className="w-24 h-24"
+				alt="Weather Icon"
+			/>
+			<p className="capitalize">{cloudsDescription}</p>
+			<h1 className="text-6xl font-bold">{currentTemp}°C</h1>
+			<div className="text-lg font-medium">
+				{minTemp}°C / {maxTemp}°C
+			</div>
+		</div>
+	);
 };
 
 export default AutoLoadCities;

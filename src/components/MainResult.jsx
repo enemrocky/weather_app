@@ -16,7 +16,7 @@ const MainResult = ({
 	icon,
 }) => {
 	return (
-		<div className="flex gap-3 p-6 text-xl">
+		<div className="flex p-6 text-xl">
 			<div className="flex justify-between bg-white m-auto mt-16 w-full max-w-lg text-sm gap-4 shadow-lg rounded-lg p-4">
 				<div className="flex flex-col w-1/3">
 					<div className="text-2xl mb-4">{dateTime}</div>{" "}

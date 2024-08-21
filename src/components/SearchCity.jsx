@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { WiHumidity } from "react-icons/wi";
-import { BiTachometer } from "react-icons/bi";
-import { FaWind } from "react-icons/fa";
+import MainResult from "./MainResult";
+import AutoLoadCities from "./AutoLoadCities";
 
 const SearchCity = () => {
 	const [enteredCity, setEnteredCity] = useState("");
@@ -33,7 +32,13 @@ const SearchCity = () => {
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				setDateTime(data.list[0].dt_txt);
+				const dateObj = new Date(data.list[0].dt_txt);
+				setDateTime(
+					dateObj.toLocaleTimeString([], {
+						hour: "2-digit",
+						minute: "2-digit",
+					})
+				);
 				setCurrentTemp(data.list[0].main.feels_like.toFixed(1));
 				setMinTemp(data.list[0].main.temp_min.toFixed(1));
 				setMaxTemp(data.list[0].main.temp_max.toFixed(1));
@@ -44,7 +49,6 @@ const SearchCity = () => {
 				setIcon(data.list[0].weather[0].icon);
 				setWeatherData(data.list);
 			});
-		console.log(dateTime);
 	}, [cityName]);
 
 	return (
@@ -60,39 +64,21 @@ const SearchCity = () => {
 					Search
 				</button>
 			</form>
-
-			{/* result component */}
-			<div className="flex gap-3 p-6 text-xl">
-				<div className="flex justify-between bg-white m-auto mt-16 w-1/5 text-sm gap-4 shadow-[#139ca1] shadow-xl">
-					<div className="flex flex-col *:mx-auto w-1/5 ">
-						<div>{dateTime}</div>
-						<div>
-							<WiHumidity className="text-4xl h-8" />
-							{humidity}
-						</div>
-						<div>
-							<BiTachometer className="text-3xl" />
-							{pressure}
-						</div>
-						<div>
-							<FaWind className="text-2xl pt-1" />
-							{windSpeed}
-						</div>
-					</div>
-					<div className="flex flex-col gap-3 *:ms-4 bg-white p-6 text-xl w-4/5">
-						<div className="uppercase font-medium">{cityName}</div>
-						<img
-							src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-							className="w-1/2 "
-						/>
-						<p>{cloudsDescription}</p>
-						<h1 className="text-6xl">{currentTemp}</h1>
-						<div className="text-lg font-medium">
-							{minTemp} / {maxTemp}
-						</div>
-					</div>
-				</div>
-			</div>
+			<AutoLoadCities />
+			{weatherData && (
+				<MainResult
+					cityName={cityName}
+					dateTime={dateTime}
+					currentTemp={currentTemp}
+					minTemp={minTemp}
+					maxTemp={maxTemp}
+					humidity={humidity}
+					pressure={pressure}
+					windSpeed={windSpeed}
+					cloudsDescription={cloudsDescription}
+					icon={icon}
+				/>
+			)}
 		</>
 	);
 };

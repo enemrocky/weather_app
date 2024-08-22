@@ -14,7 +14,10 @@ const MainResult = ({
 	windSpeed,
 	cloudsDescription,
 	icon,
+	weatherData,
 }) => {
+	console.log(weatherData);
+
 	return (
 		<div className="flex p-6 text-xl">
 			<div className="flex justify-between bg-white m-auto mt-16 w-full max-w-lg text-sm gap-4 shadow-lg rounded-lg p-4">
@@ -33,6 +36,26 @@ const MainResult = ({
 						<FaWind className="text-2xl pt-1 mr-2" />
 						<span>{windSpeed} m/s</span>
 					</div>
+					{weatherData.map((data) => (
+						<div key={Math.random() * 1000} className="flex">
+							<div className="uppercase font-medium text-2xl">
+								{data.dt_txt}
+								{/* .toLocaleTimeString([], {
+									hour: "2-digit",
+									minute: "2-digit",
+								}) */}
+							</div>
+							<div className="uppercase font-medium text-2xl">
+								{data.main.temp_min}
+							</div>
+							<div className="uppercase font-medium text-2xl">
+								{data.main.temp_max}
+							</div>
+							<div className="uppercase font-medium text-2xl">
+								{data.weather[0].description}
+							</div>
+						</div>
+					))}
 				</div>
 				<div className="flex flex-col gap-3 w-2/3 items-center text-center">
 					<div className="uppercase font-medium text-2xl">
@@ -65,6 +88,7 @@ MainResult.propTypes = {
 	cloudsDescription: PropTypes.string,
 	icon: PropTypes.string,
 	cityName: PropTypes.string,
+	weatherData: PropTypes.array,
 };
 
 export default MainResult;

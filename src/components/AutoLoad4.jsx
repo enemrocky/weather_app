@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import AutoLoad2 from "./AutoLoad2";
-import AutoLoad3 from "./AutoLoad3";
-import AutoLoad4 from "./AutoLoad4";
 
-const AutoLoadCities = () => {
+const AutoLoad4 = () => {
 	const [cityName, setCityName] = useState("");
 	const [currentTemp, setCurrentTemp] = useState("");
 	const [minTemp, setMinTemp] = useState("");
@@ -14,7 +11,7 @@ const AutoLoadCities = () => {
 
 	useEffect(() => {
 		fetch(
-			"https://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric"
+			"https://api.openweathermap.org/data/2.5/weather?q=California&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric"
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -39,27 +36,22 @@ const AutoLoadCities = () => {
 	}, []);
 
 	return (
-		<>
-			<div className="flex flex-col gap-3 items-center text-center">
-				<div className="uppercase font-medium text-2xl">{cityName}</div>
-				<div className="font-medium text-base">{time}</div>
+		<div className="flex flex-col gap-3 items-center text-center">
+			<div className="uppercase font-medium text-2xl">{cityName}</div>
+			<div className="font-medium text-base">{time}</div>
 
-				<img
-					src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-					className="w-24 h-24"
-					alt="Weather Icon"
-				/>
-				<p className="capitalize">{cloudsDescription}</p>
-				<h1 className="text-6xl font-bold">{currentTemp}°C</h1>
-				<div className="text-lg font-medium">
-					{minTemp}°C / {maxTemp}°C
-				</div>
+			<img
+				src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+				className="w-24 h-24"
+				alt="Weather Icon"
+			/>
+			<p className="capitalize">{cloudsDescription}</p>
+			<h1 className="text-6xl font-bold">{currentTemp}°C</h1>
+			<div className="text-lg font-medium">
+				{minTemp}°C / {maxTemp}°C
 			</div>
-			<AutoLoad2 />
-			<AutoLoad3 />
-			<AutoLoad4 />
-		</>
+		</div>
 	);
 };
 
-export default AutoLoadCities;
+export default AutoLoad4;

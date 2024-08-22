@@ -46,9 +46,11 @@ const SearchCity = () => {
 				setWindSpeed(data.list[0].wind.speed);
 				setcloudsDescription(data.list[0].weather[0].description);
 				setIcon(data.list[0].weather[0].icon);
-				setWeatherData(data.list);
+				// const nextList = data.list.splice(4, nextList.length - 1);
+				setWeatherData(data.list.splice(0, 4, data.list.length - 1));
 			});
 	}, [cityName]);
+	console.log(weatherData);
 
 	return (
 		<>
@@ -76,6 +78,7 @@ const SearchCity = () => {
 					windSpeed={windSpeed}
 					cloudsDescription={cloudsDescription}
 					icon={icon}
+					weatherData={weatherData}
 				/>
 			)}
 		</>

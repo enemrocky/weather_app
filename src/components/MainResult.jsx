@@ -16,6 +16,12 @@ const MainResult = ({
 	icon,
 	weatherData,
 }) => {
+	{
+		/* .toLocaleTimeString([], {
+									hour: "2-digit",
+									minute: "2-digit",
+								}) */
+	}
 	console.log(weatherData);
 
 	return (
@@ -40,10 +46,6 @@ const MainResult = ({
 						<div key={Math.random() * 1000} className="flex">
 							<div className="uppercase font-medium text-2xl">
 								{data.dt_txt}
-								{/* .toLocaleTimeString([], {
-									hour: "2-digit",
-									minute: "2-digit",
-								}) */}
 							</div>
 							<div className="uppercase font-medium text-2xl">
 								{data.main.temp_min}

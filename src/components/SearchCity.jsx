@@ -27,7 +27,7 @@ const SearchCity = () => {
 
 	useEffect(() => {
 		fetch(
-			`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric`
+			`https://api.openweathermap.org/data/2.5/forecast/daily?q=${cityName}&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric&cnt=7`
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -50,7 +50,6 @@ const SearchCity = () => {
 				setWeatherData(data.list.splice(0, 4, data.list.length - 1));
 			});
 	}, [cityName]);
-	console.log(weatherData);
 
 	return (
 		<>

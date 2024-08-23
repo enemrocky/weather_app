@@ -40,7 +40,7 @@ const AutoLoadCities = () => {
 
 	return (
 		<>
-			<div className="flex flex-col gap-3 items-center text-center">
+			<div className="flex flex-col gap-3 items-center text-center bg-white p-6 rounded-md shadow-xl w-2/12">
 				<div className="uppercase font-medium text-2xl">{cityName}</div>
 				<div className="font-medium text-base">{time}</div>
 

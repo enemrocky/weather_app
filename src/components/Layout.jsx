@@ -3,10 +3,10 @@ import AutoLoadCities from "./AutoLoadCities";
 
 const Layout = () => {
 	return (
-		<div className="bg-red-300">
+		<div className="lg:px-12">
 			<SearchCity />
 
-			<div className="flex justify-evenly bg-green-300 lg:px-16">
+			<div className="flex flex-wrap justify-evenly lg:px-16 mx-32">
 				<AutoLoadCities />
 			</div>
 		</div>

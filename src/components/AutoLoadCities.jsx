@@ -40,24 +40,30 @@ const AutoLoadCities = () => {
 
 	return (
 		<>
-			<div className="flex flex-col gap-3 items-center text-center bg-white p-6 rounded-md shadow-xl w-2/12">
-				<div className="uppercase font-medium text-2xl">{cityName}</div>
-				<div className="font-medium text-base">{time}</div>
+			{time && (
+				<>
+					<div className="flex flex-col gap-3 items-center text-center bg-white p-6 rounded-md shadow-xl w-2/12">
+						<div className="uppercase font-medium text-2xl">
+							{cityName}
+						</div>
+						<div className="font-medium text-base">{time}</div>
 
-				<img
-					src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-					className="w-24 h-24"
-					alt="Weather Icon"
-				/>
-				<p className="capitalize">{cloudsDescription}</p>
-				<h1 className="text-6xl font-bold">{currentTemp}°C</h1>
-				<div className="text-lg font-medium">
-					{minTemp}°C / {maxTemp}°C
-				</div>
-			</div>
-			<AutoLoad2 />
-			<AutoLoad3 />
-			<AutoLoad4 />
+						<img
+							src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+							className="w-24 h-24"
+							alt="Weather Icon"
+						/>
+						<p className="capitalize">{cloudsDescription}</p>
+						<h1 className="text-6xl font-bold">{currentTemp}°C</h1>
+						<div className="text-lg font-medium">
+							{minTemp}°C / {maxTemp}°C
+						</div>
+					</div>
+					<AutoLoad2 />
+					<AutoLoad3 />
+					<AutoLoad4 />
+				</>
+			)}
 		</>
 	);
 };

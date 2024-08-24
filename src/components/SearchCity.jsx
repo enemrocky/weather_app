@@ -27,7 +27,7 @@ const SearchCity = () => {
 
 	useEffect(() => {
 		fetch(
-			`https://api.openweathermap.org/data/2.5/forecast/daily?q=${cityName}&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric&cnt=7`
+			`https://api.openweathermap.org/data/2.5/forecast/?q=${cityName}&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric&cnt=7`
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -46,40 +46,44 @@ const SearchCity = () => {
 				setWindSpeed(data.list[0].wind.speed);
 				setcloudsDescription(data.list[0].weather[0].description);
 				setIcon(data.list[0].weather[0].icon);
-				// const nextList = data.list.splice(4, nextList.length - 1);
-				setWeatherData(data.list.splice(0, 4, data.list.length - 1));
+				setWeatherData(data.list.splice(1, 4, data.list.length - 1));
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 	}, [cityName]);
 
 	return (
 		<>
-			<form className="bg-white w-fit p-2 m-auto ">
-				<input
-					type="text"
-					placeholder="Search cities"
-					onChange={enteredCityHandler}
-					value={enteredCity}
-				/>
-				<button type="submit" onClick={cityNameHandler}>
-					Search
-				</button>
-			</form>
+			<div className=" w-4/6 m-auto">
+				<form className="bg-white w-fit p-2 mx-3 mt-2 h-fit ">
+					<input
+						type="text"
+						placeholder="Search cities"
+						onChange={enteredCityHandler}
+						value={enteredCity}
+					/>
+					<button type="submit" onClick={cityNameHandler}>
+						Search
+					</button>
+				</form>
 
-			{weatherData && (
-				<MainResult
-					cityName={cityName}
-					dateTime={dateTime}
-					currentTemp={currentTemp}
-					minTemp={minTemp}
-					maxTemp={maxTemp}
-					humidity={humidity}
-					pressure={pressure}
-					windSpeed={windSpeed}
-					cloudsDescription={cloudsDescription}
-					icon={icon}
-					weatherData={weatherData}
-				/>
-			)}
+				{weatherData && (
+					<MainResult
+						cityName={cityName}
+						dateTime={dateTime}
+						currentTemp={currentTemp}
+						minTemp={minTemp}
+						maxTemp={maxTemp}
+						humidity={humidity}
+						pressure={pressure}
+						windSpeed={windSpeed}
+						cloudsDescription={cloudsDescription}
+						icon={icon}
+						weatherData={weatherData}
+					/>
+				)}
+			</div>
 		</>
 	);
 };

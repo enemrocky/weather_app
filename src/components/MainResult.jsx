@@ -39,28 +39,28 @@ const MainResult = ({
 						{weatherData.map((data) => (
 							<div
 								key={Math.random() * 1000}
-								className="flex justify-between bg-[#f7ffff] py-2 shadow-md rounded-lg flex-nowrap">
+								className="flex justify-between bg-[#f7ffff] py-2 px-1 shadow-md rounded-lg flex-nowrap">
 								<div className="uppercase font-normal text-xs text-nowrap">
-									{new Date(data.dt_txt).toLocaleTimeString(
-										[],
-										{
+									{new Date(data.dt_txt)
+										.toLocaleTimeString([], {
 											hour: "2-digit",
 											minute: "2-digit",
-										}
-									)}
+										})
+										.replace("AM", " ")
+										.replace("PM", " ")}
 								</div>
 								<div className="uppercase font-bold text-xs text-nowrap">
 									{data.main.temp_min}°C /{" "}
 									{data.main.temp_max}°C
 								</div>
-								<div className="uppercasefont-normal text-xs">
+								{/* <div className="uppercasefont-normal text-xs">
 									{data.weather[0].description}
-								</div>
+								</div> */}
 							</div>
 						))}
 					</div>
 				</div>
-				<div className="flex flex-col gap-4 w-1/2 items-center text-center py-4">
+				<div className="flex flex-col gap-4 w-1/2 items-center text-center py-4 px-4">
 					<div className="uppercase font-bold text-4xl">
 						{cityName}
 					</div>

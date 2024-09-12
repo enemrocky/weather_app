@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import AutoLoad2 from "./AutoLoad2";
-import AutoLoad3 from "./AutoLoad3";
-import AutoLoad4 from "./AutoLoad4";
+import PropTypes from "prop-types";
 
-const AutoLoadCities = () => {
+const AutoLoadCities = ({ city }) => {
 	const [cityName, setCityName] = useState("");
 	const [currentTemp, setCurrentTemp] = useState("");
 	const [minTemp, setMinTemp] = useState("");
@@ -14,7 +12,7 @@ const AutoLoadCities = () => {
 
 	useEffect(() => {
 		fetch(
-			"https://api.openweathermap.org/data/2.5/weather?q=Sydney&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric"
+			`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dd6b59dff3f04ae6dc9f6af9110f9f38&units=metric`
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -36,13 +34,13 @@ const AutoLoadCities = () => {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, []);
+	}, [city]);
 
 	return (
 		<>
 			{time && (
 				<>
-					<div className="flex flex-col gap-3 items-center text-center bg-white p-6 rounded-md shadow-xl w-2/12">
+					<div className="flex flex-col gap-3 items-center text-center bg-[#f5f8fa] p-6 rounded-md shadow-xl xl:w-2/12 md:w-80 w-9/12 mb-8">
 						<div className="uppercase font-medium text-2xl">
 							{cityName}
 						</div>
@@ -54,14 +52,11 @@ const AutoLoadCities = () => {
 							alt="Weather Icon"
 						/>
 						<p className="capitalize">{cloudsDescription}</p>
-						<h1 className="text-6xl font-bold">{currentTemp}°C</h1>
+						<h1 className="text-5xl font-bold">{currentTemp}°C</h1>
 						<div className="text-lg font-medium">
 							{minTemp}°C / {maxTemp}°C
 						</div>
 					</div>
-					<AutoLoad2 />
-					<AutoLoad3 />
-					<AutoLoad4 />
 				</>
 			)}
 		</>
@@ -69,3 +64,7 @@ const AutoLoadCities = () => {
 };
 
 export default AutoLoadCities;
+
+AutoLoadCities.propTypes = {
+	city: PropTypes.string.isRequired,
+};

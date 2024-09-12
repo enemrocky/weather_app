@@ -1,12 +1,20 @@
-import Layout from "./components/Layout";
+import SearchCity from "./components/SearchCity";
+import AutoLoadCities from "./components/AutoLoadCities";
 import "./App.css";
 
-function App() {
-	return (
-		<>
-			<Layout />
-		</>
-	);
-}
+const Layout = () => {
+	const cities = ["Sydney", "London", "Johannesburg", "California"];
 
-export default App;
+	return (
+		<div className="flex flex-col content-center justify-center lg:px-12 ">
+			<SearchCity />
+			<div className="flex flex-row flex-wrap justify-evenly lg:mx-28 mx-8 gap-2">
+				{cities.map((city) => (
+					<AutoLoadCities city={city} key={Math.random() * 1000} />
+				))}
+			</div>
+		</div>
+	);
+};
+
+export default Layout;

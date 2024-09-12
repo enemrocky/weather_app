@@ -55,23 +55,24 @@ const SearchCity = () => {
 
 	return (
 		<>
-			<div className=" w-4/6 m-auto mt-10 flex mb-20">
-				<form className="bg-white w-fit mx-3 h-fit me-36 rounded-lg border-none ">
+			<div className="w-8/12 lg:w-5/12 mx-auto mt-10 flex mb-10">
+				<form className="bg-white w-full h-fit rounded-lg border-none mx-auto">
 					<input
-						className="px-4 py-2"
+						className="px-4 py-2 outline-none w-9/12"
 						type="text"
 						placeholder="Search cities"
 						onChange={enteredCityHandler}
 						value={enteredCity}
 					/>
 					<button
-						className="bg-orange-500 p-4 text-white font-semibold rounded-e-lg shadow-md"
+						className="bg-orange-500 p-4 text-white font-semibold rounded-e-lg shadow-md w-3/12"
 						type="submit"
 						onClick={cityNameHandler}>
 						Search
 					</button>
 				</form>
-
+			</div>
+			<div>
 				{weatherData && (
 					<MainResult
 						cityName={cityName}
@@ -93,15 +94,3 @@ const SearchCity = () => {
 };
 
 export default SearchCity;
-
-// data.list.map((item) => {
-// setDateTime(item.dt_txt);
-// setCurrentTemp(item.main.feels_like);
-// setMinTemp(item.main.temp_min);
-// setMaxTemp(item.main.temp_max);
-// setPressure(item.main.pressure);
-// setHumidity(item.main.humidity);
-// setWindSpeed(item.wind.speed);
-// setcloudsDescription(item.weather[0].description);
-// 	console.log(item);
-// });

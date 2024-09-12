@@ -17,9 +17,9 @@ const MainResult = ({
 	weatherData,
 }) => {
 	return (
-		<div className="flex text-xl">
-			<div className="flex justify-between bg-white mx-auto  w-full max-w-lg text-sm gap-4 shadow-lg rounded-lg p-4">
-				<div className="flex flex-col w-1/2">
+		<div className="flex text-xl mb-10">
+			<div className="flex flex-col md:flex-row justify-between bg-white mx-auto w-8/12 md:w-full max-w-lg text-sm gap-4 shadow-lg rounded-lg p-4">
+				<div className="flex flex-col md:w-1/2 justify-center mx-auto">
 					<div className="text-2xl mb-4">{dateTime}</div>{" "}
 					{/* Only time is shown here */}
 					<div className="flex items-center mb-2">
@@ -34,33 +34,30 @@ const MainResult = ({
 						<FaWind className="text-2xl pt-1 mr-2" />
 						<span>{windSpeed} m/s</span>
 					</div>
-					<div className="flex flex-col gap-2 mt-8">
+					<div className="hidden md:flex flex-col gap-2 mt-8">
 						<h3 className="font-semibold">Next Up</h3>
 						{weatherData.map((data) => (
 							<div
-								key={Math.random() * 1000}
+								key={data[data]}
 								className="flex justify-between bg-[#f7ffff] py-2 px-1 shadow-md rounded-lg flex-nowrap">
 								<div className="uppercase font-normal text-xs text-nowrap">
-									{new Date(data.dt_txt)
-										.toLocaleTimeString([], {
+									{new Date(data.dt_txt).toLocaleTimeString(
+										[],
+										{
 											hour: "2-digit",
 											minute: "2-digit",
-										})
-										.replace("AM", " ")
-										.replace("PM", " ")}
+										}
+									)}
 								</div>
 								<div className="uppercase font-bold text-xs text-nowrap">
 									{data.main.temp_min}°C /{" "}
 									{data.main.temp_max}°C
 								</div>
-								{/* <div className="uppercasefont-normal text-xs">
-									{data.weather[0].description}
-								</div> */}
 							</div>
 						))}
 					</div>
 				</div>
-				<div className="flex flex-col gap-4 w-1/2 items-center text-center py-4 px-4">
+				<div className="flex flex-col gap-4 md:w-1/2 items-center text-center py-4 px-4">
 					<div className="uppercase font-bold text-4xl">
 						{cityName}
 					</div>

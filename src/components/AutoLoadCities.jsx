@@ -45,7 +45,6 @@ const AutoLoadCities = ({ city }) => {
 							{cityName}
 						</div>
 						<div className="font-medium text-base">{time}</div>
-
 						<img
 							src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
 							className="w-24 h-24"

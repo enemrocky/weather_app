@@ -55,7 +55,7 @@ const SearchCity = () => {
 
 	return (
 		<>
-			<div className="w-8/12 lg:w-5/12 mx-auto mt-10 flex mb-10">
+			<div className="w-8/12 lg:w-5/12 mx-auto mt-10 flex mb-16">
 				<form className="bg-white w-full h-fit rounded-lg border-none mx-auto">
 					<input
 						className="px-4 py-2 outline-none w-9/12"
@@ -65,7 +65,7 @@ const SearchCity = () => {
 						value={enteredCity}
 					/>
 					<button
-						className="bg-orange-500 p-4 text-white font-semibold rounded-e-lg shadow-md w-3/12"
+						className="bg-orange-500 p-4 text-white basis-1 font-semibold rounded-e-lg shadow-md w-3/12"
 						type="submit"
 						onClick={cityNameHandler}>
 						Search

@@ -9,8 +9,8 @@ const Layout = () => {
 		<div className="flex flex-col content-center justify-center lg:px-12 ">
 			<SearchCity />
 			<div className="flex flex-row flex-wrap justify-evenly lg:mx-28 mx-8 gap-2">
-				{cities.map((city, index) => (
-					<AutoLoadCities city={city} key={index} />
+				{cities.map((city) => (
+					<AutoLoadCities city={city} key={Math.random() * 1000} />
 				))}
 			</div>
 		</div>
